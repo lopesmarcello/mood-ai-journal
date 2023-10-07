@@ -16,3 +16,26 @@ export const createNewEntry = async () => {
     return data
   }
 }
+
+export type UpdateEntryProps = {
+  id: string
+  content: string
+}
+export const updateEntry = async ({ id, content }: UpdateEntryProps) => {
+  const fullURL = createURL('/api/journal/' + id)
+
+  const request = new Request(fullURL, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      id,
+      content,
+    }),
+  })
+
+  const res = await fetch(request)
+
+  if (res.ok) {
+    const { data } = await res.json()
+    return data
+  }
+}
