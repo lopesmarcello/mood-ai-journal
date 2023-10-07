@@ -10,10 +10,12 @@ const EntryCard = ({ entry }: EntryCardProps) => {
 
   return (
     <Card className="dark:bg-zinc-800 dark:border-zinc-600">
-      <CardHeader>
-        <CardDescription className="flex justify-between">
-          <p>{date}</p>
-          <p>{entry?.analysys?.mood ?? 'mood'}</p>
+      <CardHeader className="flex-row justify-between items-center">
+        <CardDescription className="inline">{date}</CardDescription>
+        <CardDescription className="inline">
+          {entry?.analysys?.mood ?? 'mood'}
+        </CardDescription>
+        <CardDescription className="inline">
           {entry?.analysys?.emoji ? (
             <Emoji emoji={entry.analysys.emoji} />
           ) : (
