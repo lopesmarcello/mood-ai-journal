@@ -30,7 +30,6 @@ const Editor = ({ entry }: Props) => {
         id: entry.id,
         content: debouncedValue,
       })
-      console.log(updated)
       setAnalysis(updated.analysis as Analysis)
       setIsSaving(false)
     }
