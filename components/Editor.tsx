@@ -12,7 +12,7 @@ type Props = {
 const Editor = ({ entry }: Props) => {
   const [content, setContent] = useState(entry.content)
   const [isSaving, setIsSaving] = useState(false)
-  const { debouncedValue, setInputValue } = useDebouncer()
+  const { debouncedValue, setInputValue } = useDebouncer(1000)
 
   useEffect(() => {
     if (content !== entry.content) {
@@ -35,7 +35,7 @@ const Editor = ({ entry }: Props) => {
   return (
     <div className="w-full">
       <Textarea
-        className="text-xl dark:bg-zinc-900/10 prose-xl border-zinc-50"
+        className="h-72 text-xl dark:bg-zinc-900/10 prose-xl border-zinc-50"
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />

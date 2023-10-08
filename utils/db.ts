@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 
 // Prisma Setup segundo a Documentação planetscale:
-// const prisma = new PrismaClient()
+// export const prisma = new PrismaClient()
 
 // async function main() {
 //   // ... you will write your Prisma Client queries here

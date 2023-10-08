@@ -12,6 +12,9 @@ const getEntries = async () => {
     orderBy: {
       createdAt: 'desc',
     },
+    include: {
+      analysis: true,
+    },
   })
 
   return entries
@@ -29,11 +32,11 @@ const JournalPage = async () => {
       {entries.length === 0 && (
         <p>
           Create your first journal entry by clicking the{' '}
-          <strong>New Entry</strong>
+          <strong className="text-indigo-400">New Entry </strong>
           button above.
         </p>
       )}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid items-start sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
         {entries.map((entry) => (
           <EntryCard key={entry.id} entry={entry} />
         ))}

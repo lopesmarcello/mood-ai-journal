@@ -6,9 +6,10 @@ import { useRouter } from 'next/navigation'
 
 const NewEntryButton = () => {
   const router = useRouter()
+
   const handleOnClick = async () => {
     const data = await createNewEntry()
-    router.push(`/journal/${data.id}`)
+    router.push(`/journal/${data.entry.id}`)
   }
 
   return (

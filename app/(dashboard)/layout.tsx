@@ -4,8 +4,8 @@ import { ReactNode } from 'react'
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="flex h-screen w-screen bg-zinc-50 dark:bg-zinc-800">
-      <aside className="w-[200px] h-full border-r  border-zinc-900/10 dark:border-zinc-900/30">
+    <div className="flex min-h-screen min-w-screen bg-zinc-50 dark:bg-zinc-800">
+      <aside className="w-[200px] min-h-screen h-full border-r  border-zinc-900/10 dark:border-zinc-900/30">
         Mood
       </aside>
       <div className="w-full">

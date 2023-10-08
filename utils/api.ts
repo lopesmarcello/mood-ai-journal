@@ -39,3 +39,21 @@ export const updateEntry = async ({ id, content }: UpdateEntryProps) => {
     return data
   }
 }
+
+export const deleteEntry = async (id: string) => {
+  const fullURL = createURL('/api/journal/' + id)
+
+  const request = new Request(fullURL, {
+    method: 'DELETE',
+    body: JSON.stringify({
+      id,
+    }),
+  })
+
+  const res = await fetch(request)
+
+  if (res.ok) {
+    const { data } = await res.json()
+    return data
+  }
+}

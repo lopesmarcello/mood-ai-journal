@@ -5,3 +5,4 @@ todo
 - [ ] service layer refac?
 - [ ] keyboard shortcuts for functionality
 - [ ] Padronize typography
+- [ ] Layout background image
