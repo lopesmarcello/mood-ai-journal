@@ -44,14 +44,14 @@ const EntryCard = ({ entry }: EntryCardProps) => {
       <CardContent className="prose lg:prose-xl dark:text-zinc-100">
         <p>{handleContent(entry.content)}</p>
       </CardContent>
-      <CardFooter className="flex gap-4">
+      <CardFooter className="flex gap-4 justify-end">
         <ButtonTooltip tooltip="Edit">
           <Link href={`/journal/${entry.id}`}>
-            <Pencil />
+            <Pencil className="opacity-30 hover:opacity-50 transition-all" />
           </Link>
         </ButtonTooltip>
         <ButtonTooltip tooltip="Delete">
-          <Trash2 />
+          <Trash2 className="opacity-30 hover:opacity-50 transition-all" />
         </ButtonTooltip>
       </CardFooter>
     </Card>
