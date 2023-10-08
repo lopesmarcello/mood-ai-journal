@@ -44,7 +44,7 @@ const EntryCard = ({ entry }: EntryCardProps) => {
       <CardContent className="prose lg:prose-xl dark:text-zinc-100">
         <p>{handleContent(entry.content)}</p>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="flex gap-4">
         <ButtonTooltip tooltip="Edit">
           <Link href={`/journal/${entry.id}`}>
             <Pencil />

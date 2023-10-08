@@ -27,27 +27,25 @@ export const PATCH = async (
   })
 
   const analysis = await analyzeEntry(content)
-  if (updatedEntry.analysis) {
-    await prisma.analysis.update({
-      where: {
-        entryId: id,
-      },
-      data: {
-        entryId: id,
-        ...analysis,
-      },
-    })
-  } else {
-    await prisma.analysis.create({
-      data: {
-        entryId: id,
-        ...analysis,
-      },
-    })
-  }
 
-  revalidatePath('/journal/[id]', 'page')
-  return NextResponse.json({ data: updatedEntry, analysis, status: 200 })
+  const updated = await prisma.analysis.upsert({
+    where: {
+      entryId: id,
+    },
+    create: {
+      entryId: id,
+      ...analysis,
+    },
+    update: analysis,
+  })
+
+  revalidatePath(`/journal/${id}`)
+
+  return NextResponse.json({
+    data: { updatedEntry, analysis: updated },
+    analysis: updated,
+    status: 200,
+  })
 }
 
 export const DELETE = async (
