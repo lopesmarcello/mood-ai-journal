@@ -24,13 +24,13 @@ const Editor = ({ entry }: Props) => {
   }, [content, setInputValue])
 
   const update = useCallback(async () => {
-    if (debouncedValue && !isSaving) {
+    if (debouncedValue) {
       setIsSaving(true)
       const updated = await updateEntry({
         id: entry.id,
         content: debouncedValue,
       })
-      setAnalysis(updated.analysis as Analysis)
+      setAnalysis(updated?.analysis as Analysis)
       setIsSaving(false)
     }
   }, [debouncedValue, entry.id])

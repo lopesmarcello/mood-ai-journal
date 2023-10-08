@@ -7,7 +7,7 @@ import { ReactNode } from 'react'
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="flex min-h-screen min-w-screen bg-zinc-50 dark:bg-zinc-800">
-      <aside className="flex flex-col gap-2 p-4 w-[200px] min-h-screen h-full border-r  border-zinc-900/10 dark:border-zinc-900/30">
+      <aside className="hidden md:flex flex-col gap-2 p-4 w-[200px] min-h-screen h-full border-r  border-zinc-900/10 dark:border-zinc-900/30">
         <h2>Mood AI Journal</h2>
         <Separator />
         <Link href="/">Home</Link>

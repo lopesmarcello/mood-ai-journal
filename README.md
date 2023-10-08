@@ -8,3 +8,4 @@ todo
 - [ ] Layout background image
 - [ ] loading/saving states
 - [ ] delete + confirmation modal
+- [ ] question feature user warnings - its slow - it should have N entries - its in english, you must ask for another language

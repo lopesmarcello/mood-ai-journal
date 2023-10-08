@@ -57,3 +57,19 @@ export const deleteEntry = async (id: string) => {
     return data
   }
 }
+
+export const askQuestion = async (question: string) => {
+  const fullURL = createURL('/api/question')
+
+  const request = new Request(fullURL, {
+    method: 'POST',
+    body: JSON.stringify({ question }),
+  })
+
+  const res = await fetch(request)
+
+  if (res.ok) {
+    const { data } = await res.json()
+    return data
+  }
+}

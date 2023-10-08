@@ -5,6 +5,11 @@ import {
 } from 'langchain/output_parsers'
 import z from 'zod'
 import { PromptTemplate } from 'langchain/prompts'
+import { JournalEntry } from '@prisma/client'
+import { Document } from 'langchain/document'
+import { loadQARefineChain } from 'langchain/chains'
+import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
+import { MemoryVectorStore } from 'langchain/vectorstores/memory'
 
 const parser = StructuredOutputParser.fromZodSchema(
   z.object({
@@ -78,4 +83,31 @@ export const analyzeEntry = async (entry: string) => {
     const fix = await fixParser.parse(output)
     return fix
   }
+}
+
+type ShortenEntry = {
+  id: string
+  content: string
+  createdAt: Date
+}
+
+export const qa = async (question: string, entries: ShortenEntry[]) => {
+  const docs = entries.map(
+    (entry) =>
+      new Document({
+        pageContent: entry.content,
+        metadata: { source: entry.id, date: entry.createdAt },
+      })
+  )
+  const model = new OpenAI({ temperature: 0, modelName: 'gpt-3.5-turbo' })
+  const chain = loadQARefineChain(model)
+  const embeddings = new OpenAIEmbeddings()
+  const store = await MemoryVectorStore.fromDocuments(docs, embeddings)
+  const relevantDocs = await store.similaritySearch(question)
+  const res = await chain.call({
+    input_documents: relevantDocs,
+    question,
+  })
+
+  return res.output_text
 }
