@@ -12,6 +12,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         <Separator />
         <Link href="/">Home</Link>
         <Link href="/journal">Journals</Link>
+        <Link href="/history">History</Link>
       </aside>
       <div className="w-full">
         <header className="h-[60px] border-b border-zinc-900/10 dark:border-zinc-900/30">
@@ -20,7 +21,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
             <UserButton />
           </div>
         </header>
-        <div className="p-10">{children}</div>
+        <div className="p-10 w-full h-full">{children}</div>
       </div>
     </div>
   )

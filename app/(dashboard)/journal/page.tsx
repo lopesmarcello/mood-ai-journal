@@ -1,4 +1,5 @@
 import EntryCard from '@/components/EntryCard'
+import JournalEntryList from '@/components/JournalEntryList'
 import NewEntryButton from '@/components/NewEntryButton'
 import Question from '@/components/Question'
 import { getUser } from '@/utils/auth'
@@ -43,9 +44,7 @@ const JournalPage = async () => {
         <Question />
       </div>
       <div className="grid items-start sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-        {entries.map((entry) => (
-          <EntryCard key={entry.id} entry={entry} />
-        ))}
+        <JournalEntryList entries={entries} />
       </div>
     </>
   )

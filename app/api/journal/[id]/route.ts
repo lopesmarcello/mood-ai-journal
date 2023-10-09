@@ -33,6 +33,7 @@ export const PATCH = async (
       entryId: id,
     },
     create: {
+      userId: user.id,
       entryId: id,
       ...analysis,
     },
@@ -40,6 +41,7 @@ export const PATCH = async (
   })
 
   revalidatePath(`/journal/${id}`)
+  revalidatePath(`/journal`)
 
   return NextResponse.json({
     data: { updatedEntry, analysis: updated },
