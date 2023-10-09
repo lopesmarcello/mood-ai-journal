@@ -29,5 +29,6 @@
     ".next/types/**/*.ts",
     "eslint-plugin-custom-rules/no-ui-import-outside-components.js"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
