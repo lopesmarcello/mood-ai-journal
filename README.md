@@ -1,15 +1,18 @@
-todo
+MVP:
 
 - [ ] readme.md
+- [ ] more tests
 - [ ] autosave edgecases
-- [ ] service layer refac?
-- [ ] keyboard shortcuts for functionality
 - [ ] Padronize typography
-- [ ] Layout background image
-- [ ] loading/saving states
+- [ ] loading/saving states -> Skeleton, Toast message
 - [ ] delete + confirmation modal
-- [ ] question feature user warnings - its slow - it should have N entries - its in english, you must ask for another language -> "toast"
 - [ ] ask a question button layout to popup the question form/input
+- [ ] question feature user warnings - its slow - it should have N entries - its in english, you must ask for another language -> "toast"
 - [ ] /new-user logic?
-- [ ] more filters on "history"page
+
+Bonuses:
+
+- [ ] keyboard shortcuts for functionality
+- [ ] Layout background image
+- [ ] more filters on "history" page
 - [ ] other graphs?

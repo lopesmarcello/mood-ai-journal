@@ -68,9 +68,10 @@ const getPrompt = async (content: string) => {
   return input
 }
 
+const model = new OpenAI({ temperature: 0, modelName: 'gpt-3.5-turbo' })
+
 export const analyzeEntry = async (entry: string) => {
   const input = await getPrompt(entry)
-  const model = new OpenAI({ temperature: 0, modelName: 'gpt-3.5-turbo' })
   const output = await model.call(input)
 
   try {
@@ -99,7 +100,6 @@ export const qa = async (question: string, entries: ShortenEntry[]) => {
         metadata: { source: entry.id, date: entry.createdAt },
       })
   )
-  const model = new OpenAI({ temperature: 0, modelName: 'gpt-3.5-turbo' })
   const chain = loadQARefineChain(model)
   const embeddings = new OpenAIEmbeddings()
   const store = await MemoryVectorStore.fromDocuments(docs, embeddings)

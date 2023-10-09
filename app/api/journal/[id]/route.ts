@@ -11,6 +11,15 @@ export const PATCH = async (
 ) => {
   const { content, id } = await request.json()
   const user = await getUser()
+
+  if (!user) {
+    return NextResponse.json({
+      status: 404,
+      message:
+        "Didn't find a user with this clerk ID on internal database. Please check if the app database is in sync with clerk",
+    })
+  }
+
   const updatedEntry = await prisma.journalEntry.update({
     where: {
       userId_id: {
@@ -45,7 +54,6 @@ export const PATCH = async (
 
   return NextResponse.json({
     data: { updatedEntry, analysis: updated },
-    analysis: updated,
     status: 200,
   })
 }
@@ -55,16 +63,31 @@ export const DELETE = async (
   { params }: { params: { id: string } }
 ) => {
   const user = await getUser()
-  const res = await prisma.journalEntry.delete({
-    where: {
-      userId: user.id,
-      id: params.id,
-    },
-    include: {
-      analysis: true,
-    },
-  })
 
-  revalidatePath('/journal', 'page')
-  return NextResponse.json({ data: res, status: 200 })
+  if (!user) {
+    return NextResponse.json({
+      status: 404,
+      message:
+        "Didn't find a user with this clerk ID on internal database. Please check if the app database is in sync with clerk",
+    })
+  }
+
+  try {
+    const res = await prisma.journalEntry.delete({
+      where: {
+        userId: user.id,
+        id: params.id,
+      },
+      include: {
+        analysis: true,
+      },
+    })
+
+    revalidatePath('/journal', 'page')
+    return NextResponse.json({ data: res, status: 200 })
+  } catch (e) {
+    return NextResponse.json({
+      error: e,
+    })
+  }
 }
