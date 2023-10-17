@@ -7,6 +7,7 @@ import { useDebouncer } from '@/hooks/useDebouncer'
 import { updateEntry } from '@/utils/api'
 import Emoji from './Emoji'
 import { Separator } from './ui/separator'
+import { useToast } from './ui/use-toast'
 type Props = {
   entry: { analysis?: Analysis | null } & JournalEntry
 }
@@ -14,8 +15,9 @@ type Props = {
 const Editor = ({ entry }: Props) => {
   const [content, setContent] = useState(entry.content)
   const [analysis, setAnalysis] = useState(entry?.analysis)
-  const [isSaving, setIsSaving] = useState(false)
   const { debouncedValue, setInputValue } = useDebouncer(1000)
+
+  const { toast } = useToast()
 
   useEffect(() => {
     if (content !== entry.content) {
@@ -24,16 +26,15 @@ const Editor = ({ entry }: Props) => {
   }, [content, setInputValue])
 
   const update = useCallback(async () => {
+    toast({ description: "Saving..." })
     if (debouncedValue) {
-      setIsSaving(true)
       const updated = await updateEntry({
         id: entry.id,
         content: debouncedValue,
       })
       setAnalysis(updated?.analysis as Analysis)
-      setIsSaving(false)
     }
-  }, [debouncedValue, entry.id])
+  }, [debouncedValue, entry.id, toast])
 
   useEffect(() => {
     update()
@@ -47,7 +48,6 @@ const Editor = ({ entry }: Props) => {
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
-        {isSaving && <div>...saving</div>}
       </div>
 
       {analysis && (
