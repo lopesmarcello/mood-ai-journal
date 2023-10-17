@@ -14,7 +14,7 @@ const NewEntryButton = () => {
 
   return (
     <Button
-      className="bg-indigo-100 dark:bg-indigo-300 hover:bg-indigo-400 text-indigo-400 dark:text-zinc-900 hover:text-indigo-50 transition-all"
+      className="bg-indigo-100 dark:bg-indigo-300 hover:bg-indigo-400 text-indigo-400 dark:text-zinc-900 hover:text-indigo-50 hover:dark:bg-zinc-700 hover:dark:text-indigo-300 transition-all"
       onClick={handleOnClick}
     >
       New Entry

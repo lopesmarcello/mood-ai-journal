@@ -1,7 +1,8 @@
-import EntryCard from '@/components/EntryCard'
+import AskQuestionButton from '@/components/AskQuestionButton'
 import JournalEntryList from '@/components/JournalEntryList'
 import NewEntryButton from '@/components/NewEntryButton'
 import Question from '@/components/Question'
+import { Button } from '@/components/ui/button'
 import { getUser } from '@/utils/auth'
 import { prisma } from '@/utils/db'
 
@@ -27,11 +28,12 @@ const JournalPage = async () => {
 
   return (
     <>
-      <div className="flex gap-16">
-        <h2 className="text-3xl mb-8 text-indigo-500 dark:text-indigo-300 font-bold">
+      <div className="flex gap-8">
+        <h2 className="text-3xl mb-8 mr-8 text-indigo-500 dark:text-indigo-300 font-bold">
           Journal
         </h2>
         <NewEntryButton />
+        <AskQuestionButton />
       </div>
       {entries.length === 0 && (
         <p>
